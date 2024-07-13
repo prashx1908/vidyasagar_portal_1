@@ -18,7 +18,7 @@ def HOME(request):
         'student_gender_female':student_gender_female
 
     }
-    return render(request, 'HOD/home.html',context)
+    return render(request, 'Hod/home.html',context)
 @login_required(login_url='/')
 def ADD_STUDENT(request):
     courses = Course.objects.all()
