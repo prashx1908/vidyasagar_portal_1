@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="content container-fluid">
+   <div class="page-header">
+      <div class="row">
+         <div class="col-sm-12">
+            <h3 class="page-title">Profile</h3>
+            <ul class="breadcrumb">
+               <li class="breadcrumb-item"><a href="{% url 'student_home' %}">Home</a></li>
+               <li class="breadcrumb-item active">Profile</li>
+            </ul>
+         </div>
+      </div>
+   </div>
+
+   <div class="row">
+      <div class="col-md-6">
+         <div class="card">
+            <div class="card-body">
+               <b><h3 class="card-title">Personal Information</h3></b>
+               <div class="row">
+                  <div class="col-md-6">
+                     <p><strong>First Name:</strong> {{ user.first_name }}</p>
+                     <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+                     <p><strong>Email:</strong> {{ user.email }}</p>
+                     <p><strong>Username:</strong> {{ user.username }}</p>
+                     <p><strong>Gender:</strong> {{ student.gender }}</p>
+                  </div>
+                  <div class="col-md-6">
+                     <p><strong>Address:</strong> {{ student.address }}</p>
+                     <p><strong>Class:</strong> {{ student.course_id.name }}</p>
+
+                  </div>
+               </div>
+               <hr>
+               <h5 class="card-title">Student Report/Goals</h5>
+               <p><strong>Document:</strong> <a href="{{ user.student_details_link }}" target="_blank">View Document</a></p>
+               <!-- Add more additional details here if needed -->
+            </div>
+         </div>
+      </div>
+
+
+
+
+</div>
+{% endblock %}

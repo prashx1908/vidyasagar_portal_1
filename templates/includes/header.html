@@ -1,0 +1,50 @@
+{% load static %}
+<!-- header.html -->
+<div class="content container-fluid main-content">
+
+<div class="header">
+    <div class="header-left">
+        <a href="index.html" class="logo">
+            <img src="{% static '/assets/img/logo.png' %}" alt="Logo"> Vidya Sagar Dashboard
+        </a>
+        <a href="index.html" class="logo logo-small">
+            <img src="{% static 'assets/img/logo-small.png' %}" alt="Logo" width="30" height="30">
+        </a>
+    </div>
+    <a href="javascript:void(0);" id="toggle_btn">
+        <i class="fas fa-align-left"></i>
+    </a>
+
+    <a class="mobile_btn" id="mobile_btn">
+        <i class="fas fa-bars"></i>
+    </a>
+    <ul class="nav user-menu">
+        <!-- Removed the notification dropdown -->
+
+        <li class="nav-item dropdown has-arrow">
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                <span class="user-img"> <img class="rounded-circle" width="31"></span>
+                <!-- Changed icon to a larger icon -->
+                <i class="fas fa-user-circle fa-2x"></i>
+            </a>
+            <div class="dropdown-menu">
+                <div class="user-header">
+                    <div class="user-text">
+                        <h6>{{ user.first_name }} {{ user.last_name }}</h6>
+                        {% if user.user_type == "1" %}
+                            <p class="text-muted mb-0">Administrator</p>
+                        {% elif user.user_type == "2" %}
+                            <p class="text-muted mb-0">Staff</p>
+                        {% elif user.user_type == "3" %}
+                            <p class="text-muted mb-0">Student</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <a class="dropdown-item" href="{% url 'profile' %}">Profile Update</a>
+
+                <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+            </div>
+        </li>
+    </ul>
+</div>
+    </div>
