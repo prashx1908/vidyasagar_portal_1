@@ -1,6 +1,8 @@
 import os.path
 import os
 from pathlib import Path
+from django.conf import settings # new
+from  django.conf.urls.static import static #new
 
 import dj_database_url
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -19,7 +21,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "app",
-    "active_link"
+    "active_link",
+    "whitenoise.runserver_nostatic"
 ]
 
 MIDDLEWARE = [
@@ -30,6 +33,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = "vidyasagar_student_mgmt.urls"
