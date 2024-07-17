@@ -3,8 +3,12 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+<<<<<<< HEAD
 from . import views
 from . import admin_views, staff_views, student_views
+=======
+from . import views, admin_views, staff_views, student_views
+>>>>>>> 0f913aebc7f5d72f99f77c10fb7412d4de2f84d7
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -12,9 +16,13 @@ urlpatterns = [
     path("base/", views.BASE, name='base'),
 
     path("", views.LOGIN, name='login'),
+<<<<<<< HEAD
 
     path("dologin", views.doLogin, name="doLogin"),
 
+=======
+    path("dologin", views.doLogin, name="doLogin"),
+>>>>>>> 0f913aebc7f5d72f99f77c10fb7412d4de2f84d7
     path("HOD/home/", admin_views.HOME, name='hod_home'),
 
     path("Hod/Student/Add", admin_views.ADD_STUDENT, name='add_student'),
@@ -33,6 +41,7 @@ urlpatterns = [
     path("Hod/Staff/Edit/<str:id>", admin_views.EDIT_STAFF, name='edit_staff'),
     path("Hod/Staff/Delete/<str:admin>", admin_views.DELETE_STAFF, name='delete_staff'),
     path("Hod/Staff/Update/", admin_views.UPDATE_STAFF, name='update_staff'),
+<<<<<<< HEAD
 # In your urls.py
 path('Hod/Staff/Bin/', admin_views.view_staff_bin, name='view_staff_bin'),
 path('Hod/Staff/Restore/<int:staff_id>/', admin_views.restore_staff, name='restore_staff'),
@@ -40,6 +49,14 @@ path('Hod/Staff/PermanentlyDelete/<int:staff_id>/', admin_views.permanent_delete
     path("Profile", views.PROFILE, name="profile"),
     path("Profile/update", views.PROFILE_UPDATE, name="profile_update"),
 
+=======
+
+    path('Hod/timetable/<int:student_id>/', admin_views.admin_view_timetable, name='admin_view_timetable'),
+    path('Hod/timetable/<int:student_id>/edit/', admin_views.admin_edit_timetable, name='admin_edit_timetable'),
+
+    path("Profile", views.PROFILE, name="profile"),
+    path("Profile/update", views.PROFILE_UPDATE, name="profile_update"),
+>>>>>>> 0f913aebc7f5d72f99f77c10fb7412d4de2f84d7
     path("dologout", views.doLogout, name="logout"),
 
     path("Staff/Home", staff_views.HOME, name='staff_home'),
@@ -102,8 +119,16 @@ path('download_staff_csv/', admin_views.download_staff_csv, name='download_staff
 
 
     path("Student/Home", student_views.HOME, name="student_home"),
+<<<<<<< HEAD
     path("student/profile", student_views.student_profile, name='student_profile'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()
+=======
+    path('student/profile', student_views.student_profile, name='student_profile'),
+    path('student/timetable/', student_views.student_view_own_timetable, name='student_view_own_timetable'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += staticfiles_urlpatterns()
+>>>>>>> 0f913aebc7f5d72f99f77c10fb7412d4de2f84d7

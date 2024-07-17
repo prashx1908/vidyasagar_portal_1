@@ -51,7 +51,11 @@ TEMPLATES = [
 WSGI_APPLICATION = "vidyasagar_student_mgmt.wsgi.application"
 
 DATABASES = {
+<<<<<<< HEAD
     "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
+=======
+    "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))  # Use environment variable for production
+>>>>>>> 0f913aebc7f5d72f99f77c10fb7412d4de2f84d7
 }
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -83,4 +87,8 @@ STATICFILES_DIRS=[
 ]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+<<<<<<< HEAD
 AUTH_USER_MODEL = 'app.customuser'
+=======
+AUTH_USER_MODEL = 'app.customuser'
+>>>>>>> 0f913aebc7f5d72f99f77c10fb7412d4de2f84d7
