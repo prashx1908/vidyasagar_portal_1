@@ -821,9 +821,4 @@ def download_staff_csv(request):
         writer.writerow([staff.admin.first_name, staff.admin.last_name, staff.admin.email, staff.department, staff.admin.username, staff.address, staff.gender])
 
     return response
-=======
-def admin_view_timetable():
-    return None
-def admin_edit_timetable():
-    return None
->>>>>>> 0f913aebc7f5d72f99f77c10fb7412d4de2f84d7
+
