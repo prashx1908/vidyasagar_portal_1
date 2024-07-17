@@ -820,4 +820,7 @@ def download_staff_csv(request):
     for staff in staff_members:
         writer.writerow([staff.admin.first_name, staff.admin.last_name, staff.admin.email, staff.department, staff.admin.username, staff.address, staff.gender])
 
+
     return response
+
+
