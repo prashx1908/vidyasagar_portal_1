@@ -32,8 +32,7 @@ urlpatterns = [
     path("Hod/Staff/PermanentlyDelete/<int:staff_id>/", admin_views.permanent_delete_staff, name='permanent_delete_staff'),
     path("Profile", views.PROFILE, name="profile"),
     path("Profile/update", views.PROFILE_UPDATE, name="profile_update"),
-    path("Hod/timetable/<int:student_id>/", admin_views.admin_view_timetable, name='admin_view_timetable'),
-    path("Hod/timetable/<int:student_id>/edit/", admin_views.admin_edit_timetable, name='admin_edit_timetable'),
+    
     path("dologout", views.doLogout, name="logout"),
     path("Staff/Home", staff_views.HOME, name='staff_home'),
     path("Staff/View/Student", staff_views.STUDENTVIEW, name='staff_viewstudent'),
@@ -84,7 +83,7 @@ urlpatterns = [
 
     path("Student/Home", student_views.HOME, name="student_home"),
     path("student/profile", student_views.student_profile, name='student_profile'),
-    path('student/timetable/', student_views.student_view_own_timetable, name='student_view_own_timetable'),
+  
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()
