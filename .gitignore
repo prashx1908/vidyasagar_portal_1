@@ -1,0 +1,15 @@
+db.sqlite3
+migrations
+.env
+*.pyc
+*.pyo
+__pycache__/
+*.sqlite3
+*.log
+*.pot
+*.mo
+static/
+media/
+*.swp
+.env
+db.sqlite3
