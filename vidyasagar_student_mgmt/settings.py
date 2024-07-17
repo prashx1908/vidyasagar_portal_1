@@ -83,8 +83,8 @@ STATICFILES_DIRS=[
 ]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-<<<<<<< HEAD
+
 AUTH_USER_MODEL = 'app.customuser'
-=======
+
 AUTH_USER_MODEL = 'app.customuser'
 
