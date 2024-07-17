@@ -3,7 +3,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from app.models import Course, Student, customuser, Staff
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.hashers import make_password
 from app.emailbackend import EmailBackEnd
+import csv
+from django.http import HttpResponse
 
 @login_required(login_url='/')
 def HOME(request):
@@ -88,16 +91,15 @@ def ADD_STUDENT(request):
     return render(request, 'Hod/add_student.html', context)
 
 
+@login_required(login_url='/')
 def VIEW_STUDENT(request):
-    student = Student.objects.all()
-
-
-    context={
-        'student': student,
+    students = Student.objects.filter(is_deleted=False)
+    context = {
+        'students': students,
     }
-    return render(request, 'Hod/view_student.html',context)
+    return render(request, 'Hod/view_student.html', context)
 
-
+@login_required(login_url='/')
 def EDIT_STUDENT(request, id):
     student = Student.objects.filter(id= id)
     course= Course.objects.all()
@@ -110,6 +112,7 @@ def EDIT_STUDENT(request, id):
     return render(request,'Hod/edit_student.html',context)
 
 
+@login_required(login_url='/')
 def UPDATE_STUDENT(request):
     if request.method=='POST':
         student_id = request.POST.get('student_id')
@@ -162,7 +165,7 @@ def UPDATE_STUDENT(request):
 
     return render(request,'Hod/edit_student.html')
 
-
+@login_required(login_url='/')
 def DELETE_STUDENT(request, admin):
     student = get_object_or_404(customuser, id=admin)
     student.delete()
@@ -170,6 +173,7 @@ def DELETE_STUDENT(request, admin):
     return redirect('view_student')
 
 
+@login_required(login_url='/')
 def ADD_STAFF(request):
     if request.method == 'POST':
         first_name = request.POST.get('first_name')
@@ -222,6 +226,7 @@ def ADD_STAFF(request):
     return render(request, 'Hod/add_staff.html')
 
 
+@login_required(login_url='/')
 def VIEW_STAFF(request):
     staff = Staff.objects.all()
 
@@ -231,6 +236,7 @@ def VIEW_STAFF(request):
     return render(request,'Hod/view_staff.html',context)
 
 
+@login_required(login_url='/')
 def EDIT_STAFF(request, id):
     staff = Staff.objects.get(id=id)
 
@@ -239,13 +245,16 @@ def EDIT_STAFF(request, id):
     }
     return render(request,'Hod/edit_staff.html',context)
 
+@login_required(login_url='/')
 def DELETE_STAFF(request, admin):
-    staff = customuser.objects.get(id = admin)
-    staff.delete()
+    staff = get_object_or_404(customuser, id=admin)
+    staff.is_deleted = True  # Assuming you have an `is_deleted` field
+    staff.save()
     messages.success(request, 'Staff successfully deleted')
-    return redirect('view_staff')
+    return redirect('view_staff_bin')  # Redirect to the staff bin view
 
 
+@login_required(login_url='/')
 def UPDATE_STAFF(request):
     if request.method == 'POST':
         staff_id = request.POST.get('staff_id')
@@ -291,8 +300,523 @@ def UPDATE_STAFF(request):
 
     return render(request, 'Hod/edit_staff.html')
 
+@login_required(login_url='/')
+def view_students_junior1(request):
+    students = Student.objects.filter(course_id__name='JUNIOR 1')
+    context = {
+        'students': students,
+    }
+    return render(request, 'Hod/View_Students/view_students_junior1.html', context)
 
-def admin_view_timetable():
-    return None
-def admin_edit_timetable():
-    return None
+@login_required(login_url='/')
+def view_students_junior2(request):
+    students = Student.objects.filter(course_id__name='JUNIOR 2')
+    context = {
+        'students': students,
+    }
+    return render(request, 'Hod/View_Students/view_students_junior2.html', context)
+
+@login_required(login_url='/')
+def view_students_junior3(request):
+    students = Student.objects.filter(course_id__name='JUNIOR 3')
+    context = {
+        'students': students,
+    }
+    return render(request, 'Hod/View_Students/view_students_junior3.html', context)
+
+@login_required(login_url='/')
+def view_students_middle1(request):
+    students = Student.objects.filter(course_id__name='MIDDLE 1')
+    context = {
+        'students': students,
+    }
+    return render(request, 'Hod/View_Students/view_students_middle1.html', context)
+
+@login_required(login_url='/')
+def view_students_middle2(request):
+    students = Student.objects.filter(course_id__name='MIDDLE 2')
+    context = {
+        'students': students,
+    }
+    return render(request, 'Hod/View_Students/view_students_middle2.html', context)
+
+@login_required(login_url='/')
+def view_students_middle3(request):
+    students = Student.objects.filter(course_id__name='MIDDLE 3')
+    context = {
+        'students': students,
+    }
+    return render(request, 'Hod/View_Students/view_students_middle3.html', context)
+
+@login_required(login_url='/')
+def view_students_middle4(request):
+    students = Student.objects.filter(course_id__name='MIDDLE 4')
+    context = {
+        'students': students,
+    }
+    return render(request, 'Hod/View_Students/view_students_middle4.html', context)
+
+@login_required(login_url='/')
+def view_students_middle5(request):
+    students = Student.objects.filter(course_id__name='MIDDLE 5')
+    context = {
+        'students': students,
+    }
+    return render(request, 'Hod/View_Students/view_students_middle5.html', context)
+
+@login_required(login_url='/')
+def view_students_nios1(request):
+    students = Student.objects.filter(course_id__name='NIOS 1')
+    context = {
+        'students': students,
+    }
+    return render(request, 'Hod/View_Students/view_students_nios1.html', context)
+
+@login_required(login_url='/')
+def view_students_nios2(request):
+    students = Student.objects.filter(course_id__name='NIOS 2')
+    context = {
+        'students': students,
+    }
+    return render(request, 'Hod/View_Students/view_students_nios2.html', context)
+
+@login_required(login_url='/')
+def view_students_nios3(request):
+    students = Student.objects.filter(course_id__name='NIOS 3')
+    context = {
+        'students': students,
+    }
+    return render(request, 'Hod/View_Students/view_students_nios3.html', context)
+
+@login_required(login_url='/')
+def view_students_nios4(request):
+    students = Student.objects.filter(course_id__name='NIOS 4')
+    context = {
+        'students': students,
+    }
+    return render(request, 'Hod/View_Students/view_students_nios4.html', context)
+
+@login_required(login_url='/')
+def view_students_nios5(request):
+    students = Student.objects.filter(course_id__name='NIOS 5')
+    context = {
+        'students': students,
+    }
+    return render(request, 'Hod/View_Students/view_students_nios5.html', context)
+
+@login_required(login_url='/')
+def DELETE_STUDENT(request, admin):
+    student = get_object_or_404(customuser, id=admin)
+    # Set is_deleted flag instead of deleting the record
+    student.student.is_deleted = True  # Assuming the relation is correct
+    student.student.save()
+    messages.success(request, 'Student successfully moved to the bin.')
+    return redirect('view_bin')  # Redirect to the bin view page
+
+@login_required(login_url='/')
+def view_bin(request):
+    deleted_students = Student.objects.filter(is_deleted=True)
+    context = {
+        'deleted_students': deleted_students,
+    }
+    return render(request, 'Hod/view_bin.html', context)
+
+@login_required(login_url='/')
+def restore_student(request, student_id):
+    student = get_object_or_404(Student, id=student_id)
+    student.is_deleted = False
+    student.save()
+    messages.success(request, 'Student successfully restored.')
+    return redirect('view_bin')  # Redirect to the bin view page
+
+@login_required(login_url='/')
+def permanent_delete_student(request, student_id):
+    student = get_object_or_404(Student, id=student_id)
+    student.delete()  # This will permanently delete the record from the database
+    messages.success(request, 'Student permanently deleted.')
+    return redirect('view_bin')  # Redirect to the bin view page
+
+@login_required(login_url='/')
+def view_staff_bin(request):
+    deleted_staff = customuser.objects.filter(is_deleted=True)  # Assuming you have an `is_deleted` field
+    context = {
+        'deleted_staff': deleted_staff,
+    }
+    return render(request, 'Hod/view_staff_bin.html', context)
+@login_required(login_url='/')
+def restore_staff(request, staff_id):
+    staff = get_object_or_404(customuser, id=staff_id)
+    staff.is_deleted = False
+    staff.save()
+    messages.success(request, 'Staff successfully restored')
+    return redirect('view_staff_bin')  # Redirect to the staff bin view
+@login_required(login_url='/')
+def permanent_delete_staff(request, staff_id):
+    staff = get_object_or_404(customuser, id=staff_id)
+    staff.delete()  # Permanently delete the staff record
+    messages.success(request, 'Staff permanently deleted')
+    return redirect('view_staff_bin')  # Redirect to the staff bin view
+
+
+@login_required(login_url='/')
+def download_students_junior1(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="students_junior1.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['ID', 'First Name', 'Last Name', 'Class', 'Gender', 'Email', 'Student Report', 'Address', 'Created On', 'Updated On'])
+
+    students = Student.objects.filter(course_id__name='Junior 1')
+    for student in students:
+        writer.writerow([
+            student.id,
+            student.admin.first_name,
+            student.admin.last_name,
+            student.course_id.name,
+            student.gender,
+            student.admin.email,
+            student.admin.student_details_link,
+            student.address,
+            student.created_at,
+            student.updated_at
+        ])
+
+    return response
+
+@login_required(login_url='/')
+def download_students_junior1(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="students_junior1.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['ID', 'First Name', 'Last Name', 'Class', 'Gender', 'Email', 'Student Report', 'Address', 'Created On', 'Updated On'])
+
+    students = Student.objects.filter(course_id__name='JUNIOR 1')
+    for student in students:
+        writer.writerow([
+            student.id,
+            student.admin.first_name,
+            student.admin.last_name,
+            student.course_id.name,
+            student.gender,
+            student.admin.email,
+            student.admin.student_details_link,
+            student.address,
+            student.created_at,
+            student.updated_at
+        ])
+
+    return response
+@login_required(login_url='/')
+def download_students_junior2(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="students_junior2.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['ID', 'First Name', 'Last Name', 'Class', 'Gender', 'Email', 'Student Report', 'Address', 'Created On', 'Updated On'])
+
+    students = Student.objects.filter(course_id__name='JUNIOR 2')
+    for student in students:
+        writer.writerow([
+            student.id,
+            student.admin.first_name,
+            student.admin.last_name,
+            student.course_id.name,
+            student.gender,
+            student.admin.email,
+            student.admin.student_details_link,
+            student.address,
+            student.created_at,
+            student.updated_at
+        ])
+
+    return response
+@login_required(login_url='/')
+def download_students_junior3(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="students_junior3.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['ID', 'First Name', 'Last Name', 'Class', 'Gender', 'Email', 'Student Report', 'Address', 'Created On', 'Updated On'])
+
+    students = Student.objects.filter(course_id__name='JUNIOR 3')
+    for student in students:
+        writer.writerow([
+            student.id,
+            student.admin.first_name,
+            student.admin.last_name,
+            student.course_id.name,
+            student.gender,
+            student.admin.email,
+            student.admin.student_details_link,
+            student.address,
+            student.created_at,
+            student.updated_at
+        ])
+
+    return response
+
+@login_required(login_url='/')
+def download_students_middle1(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="students_middle1.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['ID', 'First Name', 'Last Name', 'Class', 'Gender', 'Email', 'Student Report', 'Address', 'Created On', 'Updated On'])
+
+    students = Student.objects.filter(course_id__name='MIDDLE 1')
+    for student in students:
+        writer.writerow([
+            student.id,
+            student.admin.first_name,
+            student.admin.last_name,
+            student.course_id.name,
+            student.gender,
+            student.admin.email,
+            student.admin.student_details_link,
+            student.address,
+            student.created_at,
+            student.updated_at
+        ])
+
+    return response
+
+@login_required(login_url='/')
+def download_students_middle2(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="students_middle2.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['ID', 'First Name', 'Last Name', 'Class', 'Gender', 'Email', 'Student Report', 'Address', 'Created On', 'Updated On'])
+
+    students = Student.objects.filter(course_id__name='MIDDLE 2')
+    for student in students:
+        writer.writerow([
+            student.id,
+            student.admin.first_name,
+            student.admin.last_name,
+            student.course_id.name,
+            student.gender,
+            student.admin.email,
+            student.admin.student_details_link,
+            student.address,
+            student.created_at,
+            student.updated_at
+        ])
+
+    return response
+
+@login_required(login_url='/')
+def download_students_middle3(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="students_middle3.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['ID', 'First Name', 'Last Name', 'Class', 'Gender', 'Email', 'Student Report', 'Address', 'Created On', 'Updated On'])
+
+    students = Student.objects.filter(course_id__name='MIDDLE 3')
+    for student in students:
+        writer.writerow([
+            student.id,
+            student.admin.first_name,
+            student.admin.last_name,
+            student.course_id.name,
+            student.gender,
+            student.admin.email,
+            student.admin.student_details_link,
+            student.address,
+            student.created_at,
+            student.updated_at
+        ])
+
+    return response
+
+@login_required(login_url='/')
+def download_students_middle4(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="students_middle4.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['ID', 'First Name', 'Last Name', 'Class', 'Gender', 'Email', 'Student Report', 'Address', 'Created On', 'Updated On'])
+
+    students = Student.objects.filter(course_id__name='MIDDLE 4')
+    for student in students:
+        writer.writerow([
+            student.id,
+            student.admin.first_name,
+            student.admin.last_name,
+            student.course_id.name,
+            student.gender,
+            student.admin.email,
+            student.admin.student_details_link,
+            student.address,
+            student.created_at,
+            student.updated_at
+        ])
+
+    return response
+
+@login_required(login_url='/')
+def download_students_middle5(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="students_middle5.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['ID', 'First Name', 'Last Name', 'Class', 'Gender', 'Email', 'Student Report', 'Address', 'Created On', 'Updated On'])
+
+    students = Student.objects.filter(course_id__name='MIDDLE 5')
+    for student in students:
+        writer.writerow([
+            student.id,
+            student.admin.first_name,
+            student.admin.last_name,
+            student.course_id.name,
+            student.gender,
+            student.admin.email,
+            student.admin.student_details_link,
+            student.address,
+            student.created_at,
+            student.updated_at
+        ])
+
+    return response
+
+
+@login_required(login_url='/')
+def download_students_nios1(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="students_nios1.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['ID', 'First Name', 'Last Name', 'Class', 'Gender', 'Email', 'Student Report', 'Address', 'Created On', 'Updated On'])
+
+    students = Student.objects.filter(course_id__name='NIOS 1')
+    for student in students:
+        writer.writerow([
+            student.id,
+            student.admin.first_name,
+            student.admin.last_name,
+            student.course_id.name,
+            student.gender,
+            student.admin.email,
+            student.admin.student_details_link,
+            student.address,
+            student.created_at,
+            student.updated_at
+        ])
+
+    return response
+
+@login_required(login_url='/')
+def download_students_nios2(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="students_nios2.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['ID', 'First Name', 'Last Name', 'Class', 'Gender', 'Email', 'Student Report', 'Address', 'Created On', 'Updated On'])
+
+    students = Student.objects.filter(course_id__name='NIOS 2')
+    for student in students:
+        writer.writerow([
+            student.id,
+            student.admin.first_name,
+            student.admin.last_name,
+            student.course_id.name,
+            student.gender,
+            student.admin.email,
+            student.admin.student_details_link,
+            student.address,
+            student.created_at,
+            student.updated_at
+        ])
+
+    return response
+
+@login_required(login_url='/')
+def download_students_nios3(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="students_nios3.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['ID', 'First Name', 'Last Name', 'Class', 'Gender', 'Email', 'Student Report', 'Address', 'Created On', 'Updated On'])
+
+    students = Student.objects.filter(course_id__name='NIOS 3')
+    for student in students:
+        writer.writerow([
+            student.id,
+            student.admin.first_name,
+            student.admin.last_name,
+            student.course_id.name,
+            student.gender,
+            student.admin.email,
+            student.admin.student_details_link,
+            student.address,
+            student.created_at,
+            student.updated_at
+        ])
+
+    return response
+
+@login_required(login_url='/')
+def download_students_nios4(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="students_nios4.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['ID', 'First Name', 'Last Name', 'Class', 'Gender', 'Email', 'Student Report', 'Address', 'Created On', 'Updated On'])
+
+    students = Student.objects.filter(course_id__name='NIOS 4')
+    for student in students:
+        writer.writerow([
+            student.id,
+            student.admin.first_name,
+            student.admin.last_name,
+            student.course_id.name,
+            student.gender,
+            student.admin.email,
+            student.admin.student_details_link,
+            student.address,
+            student.created_at,
+            student.updated_at
+        ])
+
+    return response
+
+@login_required(login_url='/')
+def download_students_nios5(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="students_nios5.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['ID', 'First Name', 'Last Name', 'Class', 'Gender', 'Email', 'Student Report', 'Address', 'Created On', 'Updated On'])
+
+    students = Student.objects.filter(course_id__name='NIOS 5')
+    for student in students:
+        writer.writerow([
+            student.id,
+            student.admin.first_name,
+            student.admin.last_name,
+            student.course_id.name,
+            student.gender,
+            student.admin.email,
+            student.admin.student_details_link,
+            student.address,
+            student.created_at,
+            student.updated_at
+        ])
+
+    return response
+
+
+def download_staff_csv(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="staff_details.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['First Name', 'Last Name', 'Email', 'Department', 'Username', 'Address', 'Gender'])
+
+    staff_members = Staff.objects.all()
+    for staff in staff_members:
+        writer.writerow([staff.admin.first_name, staff.admin.last_name, staff.admin.email, staff.department, staff.admin.username, staff.address, staff.gender])
+
+    return response

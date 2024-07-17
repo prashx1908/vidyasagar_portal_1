@@ -2,11 +2,12 @@ from django.shortcuts import render, redirect, HttpResponseRedirect, HttpRespons
 from app.emailbackend import EmailBackEnd
 from django.contrib.auth import authenticate, logout, login
 from django.contrib import messages
-from app.models import customuser, Course
+from app.models import customuser, Course, Student
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import get_user_model
 
+@login_required(login_url='/')
 def create_super_user(username, email, password):
     User = get_user_model()
     if not User.objects.filter(username=username).exists():
@@ -22,6 +23,7 @@ def create_super_user(username, email, password):
         else:
             print(f"Superuser '{username}' already exists.")
 
+@login_required(login_url='/')
 def BASE(request):
     return render(request,'base.html')
 
@@ -57,11 +59,13 @@ def doLogin(request):
     # If not a POST request, redirect to login page
     return redirect('login')
 
+@login_required(login_url='/')
 def doLogout(request):
     logout(request)
     return redirect('login')
 
 
+@login_required(login_url='/')
 def PROFILE(request):
     user= customuser.objects.get(id= request.user.id)
 
@@ -72,6 +76,7 @@ def PROFILE(request):
     return render(request, 'profile.html')
 
 
+@login_required(login_url='/')
 def PROFILE_UPDATE(request):
     if request.method == "POST":
         profile_pic = request.FILES.get('profile_pic')
@@ -100,10 +105,8 @@ def PROFILE_UPDATE(request):
 
     return render(request, 'profile.html')
 
-# views.py
-
-
-
 
 def LOGIN(request):
     return render(request, 'login.html')
+
+

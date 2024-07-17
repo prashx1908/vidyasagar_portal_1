@@ -27,5 +27,3 @@ def student_profile(request):
     return render(request, 'Student/profile.html', context)
 
 
-def student_view_own_timetable():
-    return None

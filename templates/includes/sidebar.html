@@ -1,5 +1,10 @@
 {% load static %}
 {% load active_link_tags %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM1RqxwGgLHG5PQ6fztHnXUj3aTFev7m8ZtX5u" crossorigin="anonymous">
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
+
 <div class="sidebar" id="sidebar">
     <div class="sidebar-inner slimscroll">
         <div id="sidebar-menu" class="sidebar-menu">
@@ -8,72 +13,131 @@
                 <li class="menu-title">
                     <span>Main Menu</span>
                 </li>
+                <li class="{% active_link 'hod_home' 'active' %}">
+                    <a href="{% url 'hod_home' %}"><i class="fas fa-holly-berry"></i> <span>Admin Dashboard</span> <span class="menu-arrow"></span></a>
+                    <ul>
+                        <li><a href="{% url 'hod_home' %}" class="active">Admin Home</a></li>
+                        <li><a href="#">Teacher Dashboard</a></li>
+                        <li><a href="{% url 'student_home' %}">Student Dashboard</a></li>
+                    </ul>
+                </li>
+                <li class="submenu {% active_link 'add_student' 'active' %} {% active_link 'view_student' 'active' %}">
+                    <a href="#"><i class="fas fa-user-graduate"></i> <span>Students</span> <span class="menu-arrow"></span></a>
+                    <ul>
+                        <li><a href="{% url 'add_student' %}">Add Student</a></li>
+                        <li><a href="#"><span>View Students</span> <span class="menu-arrow"></span></a>
+                            <ul>
+                                <li class="submenu">
+                                    <a href="#"><span>JUNIOR</span> <span class="menu-arrow"></span></a>
+                                    <ul>
+                                        <li><a href="{% url 'hod_view_students_junior1' %}">JUNIOR 1</a></li>
+                                        <li><a href="{% url 'hod_view_students_junior2' %}">JUNIOR 2</a></li>
+                                        <li><a href="{% url 'hod_view_students_junior3' %}">JUNIOR 3</a></li>
+                                    </ul>
+                                </li>
+                                <li class="submenu">
+                                    <a href="#"><span>MIDDLE</span> <span class="menu-arrow"></span></a>
+                                    <ul>
+                                        <li><a href="{% url 'hod_view_students_middle1' %}">MIDDLE 1</a></li>
+                                        <li><a href="{% url 'hod_view_students_middle2' %}">MIDDLE 2</a></li>
+                                        <li><a href="{% url 'hod_view_students_middle3' %}">MIDDLE 3</a></li>
+                                        <li><a href="{% url 'hod_view_students_middle4' %}">MIDDLE 4</a></li>
+                                        <li><a href="{% url 'hod_view_students_middle5' %}">MIDDLE 5</a></li>
+                                    </ul>
+                                </li>
+                                <li class="submenu">
+                                    <a href="#"><span>NIOS</span> <span class="menu-arrow"></span></a>
+                                    <ul>
+                                        <li><a href="{% url 'hod_view_students_nios1' %}">NIOS 1</a></li>
+                                        <li><a href="{% url 'hod_view_students_nios2' %}">NIOS 2</a></li>
+                                        <li><a href="{% url 'hod_view_students_nios3' %}">NIOS 3</a></li>
+                                        <li><a href="{% url 'hod_view_students_nios4' %}">NIOS 4</a></li>
+                                        <li><a href="{% url 'hod_view_students_nios5' %}">NIOS 5</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
 
-                    {# Admin Sidebar Menu Items #}
-                    <li class="{% active_link 'hod_home' 'active' %}">
-                        <a href="{% url 'hod_home' %}"><i class="fas fa-user-graduate"></i> <span> Admin Dashboard</span> <span class="menu-arrow"></span></a>
-                        <ul>
-                            <li><a href="{% url 'hod_home' %}" class="active">Admin Home</a></li>
-                            <li><a href="#">Teacher Dashboard</a></li>
-                            <li><a href="{% url 'student_home' %}">Student Dashboard</a></li>
-                        </ul>
-                    </li>
-                    <li class="submenu {% active_link 'add_student' 'active' %} {% active_link 'view_student' 'active' %}">
-                        <a href="#"><i class="fas fa-user-graduate"></i> <span> Students</span> <span class="menu-arrow"></span></a>
-                        <ul>
-                            <li><a href="{% url 'add_student' %}">Add Student</a></li>
-                            <li><a href="{% url 'view_student' %}">View Student</a></li>
-                        </ul>
-                    </li>
-                    <li class="submenu">
-                        <a href="#"><i class="fas fa-chalkboard-teacher"></i> <span> Staff</span> <span class="menu-arrow"></span></a>
-                        <ul>
-                            <li><a href="{% url 'add_staff' %}">Add Staff</a></li>
-                            <li><a href="{% url 'view_staff' %}">View Staff</a></li>
+                <li class="submenu">
+                    <a href="#"> <i class="fas fa-trash-alt"></i><span>Temporary Bin</span><span class="menu-arrow"></span></a>
+                    <ul>
+                        <li><a href="{% url 'view_bin' %}">Student Bin</a></li>
+                        <li><a href="{% url 'view_staff_bin' %}">Staff Bin</a></li>
+                    </ul>
+                </li>
 
-                        </ul>
-                    </li>
-                <li><i class=""></i>
-                        <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
-                    </li>
-
-
+                <li class="submenu">
+                    <a href="#"><i class="fas fa-chalkboard-teacher"></i> <span>Staff</span> <span class="menu-arrow"></span></a>
+                    <ul>
+                        <li><a href="{% url 'add_staff' %}">Add Staff</a></li>
+                        <li><a href="{% url 'view_staff' %}">View Staff</a></li>
+                    </ul>
+                </li>
+                <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a></li>
+            </ul>
             {% elif user.user_type == '2' %}
             <ul>
                 <li class="menu-title">
                     <span>Main Menu</span>
                 </li>
-                    <li class="{% active_link 'hod_home' 'active' %}">
-                        <a href="{% url 'staff_home' %}"><i class="fas fa-holly-berry"></i> <span>Dashboard</span></a>
-                    </li>
-                     <li class="{% active_link 'hod_home' 'active' %}">
-                        <a href="{% url 'staff_viewstudent' %}"><i class="fas fa-user-graduate"></i> <span>View Student Details</span></a>
-                    </li>
-                <li><i class=""></i>
-                        <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
-                    </li>
+                <li class="{% active_link 'staff_home' 'active' %}">
+                    <a href="{% url 'staff_home' %}"><i class="fas fa-holly-berry"></i> <span>Dashboard</span></a>
+                </li>
+                <li class="submenu">
+                    <a href="#"><i class="fas fa-user-graduate"></i> <span>View Students</span> <span class="menu-arrow"></span></a>
+                    <ul>
+                        <li class="submenu">
+                            <a href="#"><span>JUNIOR</span> <span class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="{% url 'staff_view_students_junior1' %}">JUNIOR 1</a></li>
+                                <li><a href="{% url 'staff_view_students_junior2' %}">JUNIOR 2</a></li>
+                                <li><a href="{% url 'staff_view_students_junior3' %}">JUNIOR 3</a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><span>MIDDLE</span> <span class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="{% url 'staff_view_students_middle1' %}">MIDDLE 1</a></li>
+                                <li><a href="{% url 'staff_view_students_middle2' %}">MIDDLE 2</a></li>
+                                <li><a href="{% url 'staff_view_students_middle3' %}">MIDDLE 3</a></li>
+                                <li><a href="{% url 'staff_view_students_middle4' %}">MIDDLE 4</a></li>
+                                <li><a href="{% url 'staff_view_students_middle5' %}">MIDDLE 5</a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><span>NIOS</span> <span class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="{% url 'staff_view_students_nios1' %}">NIOS 1</a></li>
+                                <li><a href="{% url 'staff_view_students_nios2' %}">NIOS 2</a></li>
+                                <li><a href="{% url 'staff_view_students_nios3' %}">NIOS 3</a></li>
+                                <li><a href="{% url 'staff_view_students_nios4' %}">NIOS 4</a></li>
+                                <li><a href="{% url 'staff_view_students_nios5' %}">NIOS 5</a></li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a></li>
             </ul>
-
-
 
             {% else %}
             <ul>
                 <li class="menu-title">
                     <span>Main Menu</span>
+                     </li>
+                <li class="{% active_link 'student_home' 'active' %}">
+                    <a href="{% url 'student_home' %}"><i class="fas fa-holly-berry"></i> <span>Dashboard</span></a>
                 </li>
-                    <li class="{% active_link 'hod_home' 'active' %}">
-                        <a href="{% url 'student_home' %}"><i class="fas fa-holly-berry"></i> <span>Dashboard</span></a>
-                    </li>
-                     <li class="{% active_link 'hod_home' 'active' %}">
-                        <a href="{% url 'student_profile' %}"><i class="fas fa-user-graduate"></i> <span>View Student Details</span></a>
-                    </li>
-                <li><i class=""></i>
-                        <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
-                    </li>
+                <li class="{% active_link 'student_profile' 'active' %}">
+                    <a href="{% url 'student_profile' %}"><i class="fas fa-user-graduate"></i> <span>View Student Details</span></a>
+                </li>
+                <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a></li>
             </ul>
-
-
             {% endif %}
         </div>
     </div>
 </div>
+```
+

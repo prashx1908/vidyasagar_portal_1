@@ -2260,9 +2260,9 @@ footer p {
     color: #7085b0;
 }
 .fa-mobile {
-    color: #5ebbf4;
-    bottom: -10px !important;
-    right: 18px !important;
+    color: #000000;
+    bottom: -7px !important;
+    right: 20px !important;
 }
 .fa-phone {
     color: #5ebbf4;
@@ -2702,6 +2702,7 @@ table.table-inbox tbody tr.checked {
 /*-----------------
 	20. Teacher Dashboard
 -----------------------*/
+
 
 .bg-five {
 	background-color: rgb(244 104 65 / 0.2);
@@ -3177,13 +3178,13 @@ table.table-inbox tbody tr.checked {
 		padding: 0px 50px;
 	}
 	.mobile_btn {
-		color: #18aefa !important;
+		color: #000000 !important;
 		cursor: pointer;
 		display: block;
 		font-size: 24px;
-		height: 60px;
+		height: 40px;
 		left: 0;
-		line-height: 60px;
+		line-height: 40px;
 		padding: 0 15px;
 		position: absolute;
 		text-align: center;

@@ -1,6 +1,0 @@
-LOAD DATABASE
-     FROM sqlite:///Users/prashanth/db.sqlite3
-     INTO postgresql://vidyasagar_admin:vidya_admin_sagar#1921@localhost/vidyasagar_portal
-WITH data only, include no drop, create tables, create indexes, reset sequences
-
-ALTER SCHEMA 'main' RENAME TO 'public';

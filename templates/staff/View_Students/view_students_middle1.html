@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="content container-fluid">
+    <div class="page-header">
+        <h3 class="page-title">Students in JUNIOR 1</h3>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card card-table">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                       <th>Name</th>
+                                       <th>Class</th>
+                                       <th>Gender</th>
+                                       <th>Email</th>
+                                       <th>Student Report</th>
+                                       <th>Address</th>
+                                       <th>Created On</th>
+                                       <th>Updated On</th>
+                                       <th class="text-right"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in students %}
+                                    <tr>
+                                       <td>{{i.id}}</td>
+                                       <td>
+                                          <h2 class="table-avatar">
+
+                                             <a href="student-details.html">{{i.admin.first_name}} &nbsp; {{i.admin.last_name}}</a>
+
+                                          </h2>
+                                       </td>
+                                       <td>{{i.course_id.name}}</td>
+                                       <td>{{i.gender}}</td>
+                                       <td>{{i.admin.email}}</td>
+                                       <td> <a href="{{i.admin.student_details_link}}" target="_blank">Click here</a> </td>
+                                       <td>{{i.address}}</td>
+                                       <td>{{i.created_at}}</td>
+                                       <td>{{i.updated_at}}</td>
+
+
+                                       <td class="text-right">
+                                          <div class="actions">
+                                          </div>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="7">No students found.</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

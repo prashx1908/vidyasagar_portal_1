@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h2>Deleted Staff</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for staff in deleted_staff %}
+            <tr>
+                <td>{{ staff.id }}</td>
+                <td>{{ staff.first_name }} {{ staff.last_name }}</td>
+                <td>{{ staff.email }}</td>
+                <td>
+                    <a href="{% url 'restore_staff' staff.id %}" class="btn btn-success">Restore</a>
+                    <a href="{% url 'permanent_delete_staff' staff.id %}" class="btn btn-danger">Permanent Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

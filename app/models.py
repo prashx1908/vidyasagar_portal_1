@@ -8,10 +8,11 @@ class customuser(AbstractUser):
         ('2', 'STAFF'),
         ('3', 'STUDENT'),
     )
-    user_type = models.CharField(choices=USER_TYPES, max_length=50, default='3')
+    user_type = models.CharField(choices=USER_TYPES, max_length=50, default='1')
     profile_pic = models.ImageField(upload_to='media/profile_pic', blank=True, null=True)
     student_details_link = models.URLField(max_length=200, null=True, blank=True)
     department = models.CharField(max_length=100, blank=True, null=True)
+    is_deleted = models.BooleanField(default=False)  # Add this line
 
 
 class Course(models.Model):
@@ -29,21 +30,25 @@ class Student(models.Model):
     course_id = models.ForeignKey(Course,on_delete = models.DO_NOTHING)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    is_deleted = models.BooleanField(default=False)
+    student_id = models.CharField(max_length=20, default='default_id')
+
 
     def __str__(self):
         return self.admin.first_name + self.admin.last_name
 
 class Staff(models.Model):
-    admin = models.OneToOneField(customuser,on_delete=models.CASCADE)
+    admin = models.OneToOneField(customuser, on_delete=models.CASCADE)
     address = models.TextField()
     gender = models.CharField(max_length=100)
     department = models.CharField(max_length=100)
+    is_deleted = models.BooleanField(default=False)  # Add this line
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    staff_id = models.CharField(max_length=20, default='default_id')
 
     def __str__(self):
         return self.admin.username
-
 
 
 

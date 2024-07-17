@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="content container-fluid">
+    <div class="page-header">
+        <h3 class="page-title">Deleted Students</h3>
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'hod_home' %}">Dashboard</a></li>
+            <li class="breadcrumb-item active">Bin</li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card card-table">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th class="text-right">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for student in deleted_students %}
+                                    <tr>
+                                        <td>{{ student.id }}</td>
+                                        <td>{{ student.admin.first_name }} {{ student.admin.last_name }}</td>
+                                        <td>{{ student.admin.email }}</td>
+                                        <td class="text-right">
+                                            <a href="{% url 'restore_student' student.id %}" class="btn btn-sm bg-success-light mr-2">
+                                                Restore
+                                            </a>
+                                            <a href="{% url 'permanent_delete_student' student.id %}" class="btn btn-sm bg-danger-light">
+                                                Permanently Delete
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
