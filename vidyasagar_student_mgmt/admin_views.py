@@ -308,7 +308,7 @@ def view_students_junior1(request):
     }
     return render(request, 'Hod/View_Students/view_students_junior1.html', context)
 
-<<<<<<< HEAD
+
 @login_required(login_url='/')
 def view_students_junior2(request):
     students = Student.objects.filter(course_id__name='JUNIOR 2')
