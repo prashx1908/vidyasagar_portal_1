@@ -308,7 +308,7 @@ def view_students_junior1(request):
     }
     return render(request, 'Hod/View_Students/view_students_junior1.html', context)
 
-<<<<<<< HEAD
+
 @login_required(login_url='/')
 def view_students_junior2(request):
     students = Student.objects.filter(course_id__name='JUNIOR 2')
@@ -821,9 +821,3 @@ def download_staff_csv(request):
         writer.writerow([staff.admin.first_name, staff.admin.last_name, staff.admin.email, staff.department, staff.admin.username, staff.address, staff.gender])
 
     return response
-=======
-def admin_view_timetable():
-    return None
-def admin_edit_timetable():
-    return None
->>>>>>> 0f913aebc7f5d72f99f77c10fb7412d4de2f84d7

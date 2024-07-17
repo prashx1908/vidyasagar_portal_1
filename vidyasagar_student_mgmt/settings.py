@@ -51,11 +51,14 @@ TEMPLATES = [
 WSGI_APPLICATION = "vidyasagar_student_mgmt.wsgi.application"
 
 DATABASES = {
-<<<<<<< HEAD
-    "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
-=======
-    "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))  # Use environment variable for production
->>>>>>> 0f913aebc7f5d72f99f77c10fb7412d4de2f84d7
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'vidyasagar_database',
+        'USER': 'viydasagar_admin',
+        'PASSWORD': 'vidya_admin_sagar#1921',
+        'HOST': 'vidyasagar-database.c5iw8w0iyfy3.eu-north-1.rds.amazonaws.com',
+        'PORT': '5432',
+    }
 }
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -87,8 +90,17 @@ STATICFILES_DIRS=[
 ]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-<<<<<<< HEAD
+
 AUTH_USER_MODEL = 'app.customuser'
-=======
+
 AUTH_USER_MODEL = 'app.customuser'
->>>>>>> 0f913aebc7f5d72f99f77c10fb7412d4de2f84d7
+
+AWS_ACCESS_KEY_ID = 'AKIAZI2LFR4KFYXVWUXY'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'vidyasagar-admin'
+AWS_S3_SIGNATURE_NAME = 's3v4',
+AWS_S3_REGION_NAME = 'eu-north-1'
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+AWS_S3_VERITY = True
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
