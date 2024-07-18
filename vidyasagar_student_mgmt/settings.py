@@ -2,11 +2,6 @@ import os.path
 import os
 from pathlib import Path
 
-from decouple import config
-
-from django.conf import settings # new
-from  django.conf.urls.static import static #new
-
 import dj_database_url
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -24,8 +19,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "app",
-    "active_link",
-8
+    "active_link"
 ]
 
 MIDDLEWARE = [
@@ -57,18 +51,8 @@ TEMPLATES = [
 WSGI_APPLICATION = "vidyasagar_student_mgmt.wsgi.application"
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
-        'PORT': config('DB_PORT', default='5432'),
-    }
+    "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
-
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -99,19 +83,4 @@ STATICFILES_DIRS=[
 ]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
 AUTH_USER_MODEL = 'app.customuser'
-
-AUTH_USER_MODEL = 'app.customuser'
-
-
-AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
-AWS_S3_SIGNATURE_NAME = config('AWS_S3_SIGNATURE_NAME')
-AWS_S3_REGION_NAME = config('AWS_S3_REGION_NAME')
-AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL = None
-AWS_S3_VERITY = True
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
