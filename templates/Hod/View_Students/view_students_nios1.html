@@ -60,6 +60,9 @@
                                             <a href="javascript:void(0);" onclick="confirmDelete({{ i.admin.id }});" class="btn btn-sm bg-danger-light">
                                                 <i class="fas fa-trash"></i>
                                             </a>
+                                              <a href="{% url 'move_to_alumni' i.id %}" class="btn btn-sm bg-warning-light">
+                                <i class="fas fa-user-graduate"></i>
+                            </a>
                                         </div>
                                     </td>
                                 </tr>

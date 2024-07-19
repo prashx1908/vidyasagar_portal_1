@@ -32,6 +32,7 @@ class Student(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     is_deleted = models.BooleanField(default=False)
     student_id = models.CharField(max_length=20, default='default_id')
+    is_alumni = models.BooleanField(default=False)
 
 
     def __str__(self):

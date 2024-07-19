@@ -36,6 +36,11 @@ urlpatterns = [
                        name='permanent_delete_staff'),
                   path("Profile", views.PROFILE, name="profile"),
                   path("Profile/update", views.PROFILE_UPDATE, name="profile_update"),
+                  path('move_to_alumni/<int:student_id>/', admin_views.move_to_alumni, name='move_to_alumni'),
+                  path('alumni_students/', admin_views.view_alumni_students, name='view_alumni_students'),
+                  path('Hod/Student/Delete/<int:student_id>/', admin_views.delete_student, name='delete_student'),
+                    path('Hod/Student/alumni_restore/<int:student_id>/', admin_views.aulmnirestore_student, name='aulmnirestore_student'),
+
 
                   path("dologout", views.doLogout, name="logout"),
                   path("Staff/Home", staff_views.HOME, name='staff_home'),

@@ -109,4 +109,3 @@ def PROFILE_UPDATE(request):
 def LOGIN(request):
     return render(request, 'login.html')
 
-
