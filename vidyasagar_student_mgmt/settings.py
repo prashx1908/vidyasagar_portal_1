@@ -49,20 +49,6 @@ TEMPLATES = [
     },
 ]
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('POSTGRES_DATABASE'),
-        'USER': config('POSTGRES_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('POSTGRES_HOST'),
-        'PORT': config('DB_PORT', default='5432'),
-    }
-}
-
-if config('ENVIRONMENT') == "PRODUCTION":
-    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
