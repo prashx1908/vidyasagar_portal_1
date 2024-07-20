@@ -1,13 +1,12 @@
 {
-"builds": [{
-"src": "vidyasagar_student_mgmt/wsgi.py",
-"use": "@vercel/python",
-"config": { "maxLambdaSize": "15mb", "runtime": "python3.10" }
-}],
-"routes": [
-{
-"src": "/(.*)",
-"dest": "vidyasagar_student_mgmt/wsgi.py"
-}
-]
+  "version": 2,
+  "builds": [
+    {
+      "src": "idyasagar_student_mgmt/wsgi.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "env": {
+    "PYTHON_VERSION": "3.12"
+  }
 }
