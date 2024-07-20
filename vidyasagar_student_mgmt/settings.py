@@ -9,7 +9,7 @@ SECRET_KEY = config("SECRET_KEY")
 
 DEBUG = config("DEBUG", default=False, cast=bool)
 
-ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="*").split(",")
+ALLOWED_HOSTS = ['.vercel.app']
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -62,6 +62,7 @@ DATABASES = {
 
 if config('ENVIRONMENT') == "PRODUCTION":
     DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
