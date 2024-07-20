@@ -49,7 +49,7 @@ TEMPLATES = [
     },
 ]
 DATABASES = {
-    'default': dj_database_url.config(default=config('NEXT_PUBLIC_SUPABASE_URL'), conn_max_age=600, ssl_require=True)
+    'default': dj_database_url.config(default=config('POSTGRES_URL'), conn_max_age=600, ssl_require=True)
 }
 
 
