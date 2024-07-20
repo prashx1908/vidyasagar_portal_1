@@ -5,5 +5,8 @@ psycopg2-binary
 django-active-link
 dj-database-url
 
+python-decouple
+
+
 aiobotocore==2.2.0
 
