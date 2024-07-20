@@ -1,16 +1,15 @@
-
-import os.path
 import os
 from pathlib import Path
-
+from decouple import config
 import dj_database_url
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = "django-insecure-mx3@-!(-+=49-1kywr)xpnj(cw21i%bcz*69090vd8q%&^f_%v"
+SECRET_KEY = config("SECRET_KEY")
 
-DEBUG = True
+DEBUG = config("DEBUG", default=False, cast=bool)
 
-ALLOWED_HOSTS = ["*"]  # Choose one
+ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="*").split(",")
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -20,7 +19,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "app",
-    "active_link"
+    "active_link",
 ]
 
 MIDDLEWARE = [
@@ -49,11 +48,20 @@ TEMPLATES = [
         },
     },
 ]
-WSGI_APPLICATION = "vidyasagar_student_mgmt.wsgi.application"
 
 DATABASES = {
-    "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT', default='5432'),
+    }
 }
+
+if config('ENVIRONMENT') == "PRODUCTION":
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -77,15 +85,12 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 MEDIA_URL = "/media/"
-STATIC_ROOT= '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-STATICFILES_DIRS=[
-    os.path.join(BASE_DIR,'static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
 ]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = 'app.customuser'
-
-AUTH_USER_MODEL = 'app.customuser'
-
