@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "version": 2,
   "builds": [
     {
@@ -10,3 +11,17 @@
     "PYTHON_VERSION": "3.12"
   }
 }
+=======
+"builds": [{
+"src": "vidyasagar_student_mgmt/wsgi.py",
+"use": "@vercel/python",
+"config": { "maxLambdaSize": "15mb", "runtime": "python3.12" }
+}],
+"routes": [
+{
+"src": "/(.*)",
+"dest": "vidyasagar_student_mgmt/wsgi.py"
+}
+]
+}
+>>>>>>> ffaa1ee6c6613f89897e49f633d0d5d0b28b19a1

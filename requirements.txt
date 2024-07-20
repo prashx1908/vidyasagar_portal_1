@@ -4,4 +4,7 @@ django-environ
 psycopg2-binary
 django-active-link
 dj-database-url
+<<<<<<< HEAD
 aiobotocore==2.2.0
+=======
+>>>>>>> ffaa1ee6c6613f89897e49f633d0d5d0b28b19a1
