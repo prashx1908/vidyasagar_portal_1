@@ -12,12 +12,12 @@
   ],
   "routes": [
     {
-      "src": "/(.*)",
-      "dest": "vidyasagar_student_mgmt/wsgi.py"
-    },
-    {
       "src": "/static/(.*)",
       "dest": "/static/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "vidyasagar_student_mgmt/wsgi.py"
     }
   ]
 }
