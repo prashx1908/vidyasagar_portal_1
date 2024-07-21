@@ -302,7 +302,7 @@ def UPDATE_STAFF(request):
 
 @login_required(login_url='/')
 def view_students_junior1(request):
-    students = Student.objects.filter(course_id__name='JUNIOR 1', is_alumni=False)
+    students = Student.objects.filter(course_id__name='JUNIOR 1')
     context = {
         'students': students,
     }
@@ -311,7 +311,7 @@ def view_students_junior1(request):
 
 @login_required(login_url='/')
 def view_students_junior2(request):
-    students = Student.objects.filter(course_id__name='JUNIOR 2', is_alumni=False)
+    students = Student.objects.filter(course_id__name='JUNIOR 2')
     context = {
         'students': students,
     }
@@ -319,7 +319,7 @@ def view_students_junior2(request):
 
 @login_required(login_url='/')
 def view_students_junior3(request):
-    students = Student.objects.filter(course_id__name='JUNIOR 3', is_alumni=False)
+    students = Student.objects.filter(course_id__name='JUNIOR 3')
     context = {
         'students': students,
     }
@@ -327,7 +327,7 @@ def view_students_junior3(request):
 
 @login_required(login_url='/')
 def view_students_middle1(request):
-    students = Student.objects.filter(course_id__name='MIDDLE 1', is_alumni=False)
+    students = Student.objects.filter(course_id__name='MIDDLE 1')
     context = {
         'students': students,
     }
@@ -335,7 +335,7 @@ def view_students_middle1(request):
 
 @login_required(login_url='/')
 def view_students_middle2(request):
-    students = Student.objects.filter(course_id__name='MIDDLE 2', is_alumni=False)
+    students = Student.objects.filter(course_id__name='MIDDLE 2')
     context = {
         'students': students,
     }
@@ -343,7 +343,7 @@ def view_students_middle2(request):
 
 @login_required(login_url='/')
 def view_students_middle3(request):
-    students = Student.objects.filter(course_id__name='MIDDLE 3', is_alumni=False)
+    students = Student.objects.filter(course_id__name='MIDDLE 3')
     context = {
         'students': students,
     }
@@ -351,7 +351,7 @@ def view_students_middle3(request):
 
 @login_required(login_url='/')
 def view_students_middle4(request):
-    students = Student.objects.filter(course_id__name='MIDDLE 4', is_alumni=False)
+    students = Student.objects.filter(course_id__name='MIDDLE 4')
     context = {
         'students': students,
     }
@@ -359,7 +359,7 @@ def view_students_middle4(request):
 
 @login_required(login_url='/')
 def view_students_middle5(request):
-    students = Student.objects.filter(course_id__name='MIDDLE 5', is_alumni=False)
+    students = Student.objects.filter(course_id__name='MIDDLE 5')
     context = {
         'students': students,
     }
@@ -367,7 +367,7 @@ def view_students_middle5(request):
 
 @login_required(login_url='/')
 def view_students_nios1(request):
-    students = Student.objects.filter(course_id__name='NIOS 1', is_alumni=False)
+    students = Student.objects.filter(course_id__name='NIOS 1')
     context = {
         'students': students,
     }
@@ -375,7 +375,7 @@ def view_students_nios1(request):
 
 @login_required(login_url='/')
 def view_students_nios2(request):
-    students = Student.objects.filter(course_id__name='NIOS 2', is_alumni=False)
+    students = Student.objects.filter(course_id__name='NIOS 2')
     context = {
         'students': students,
     }
@@ -383,7 +383,7 @@ def view_students_nios2(request):
 
 @login_required(login_url='/')
 def view_students_nios3(request):
-    students = Student.objects.filter(course_id__name='NIOS 3', is_alumni=False)
+    students = Student.objects.filter(course_id__name='NIOS 3')
     context = {
         'students': students,
     }
@@ -391,7 +391,7 @@ def view_students_nios3(request):
 
 @login_required(login_url='/')
 def view_students_nios4(request):
-    students = Student.objects.filter(course_id__name='NIOS 4', is_alumni=False)
+    students = Student.objects.filter(course_id__name='NIOS 4')
     context = {
         'students': students,
     }
@@ -399,7 +399,7 @@ def view_students_nios4(request):
 
 @login_required(login_url='/')
 def view_students_nios5(request):
-    students = Student.objects.filter(course_id__name='NIOS 5', is_alumni=False)
+    students = Student.objects.filter(course_id__name='NIOS 5')
     context = {
         'students': students,
     }
@@ -824,28 +824,3 @@ def download_staff_csv(request):
     return response
 
 
-@login_required(login_url='/')
-def move_to_alumni(request, student_id):
-    student = get_object_or_404(Student, id=student_id)
-    student.is_alumni = True
-    student.save()
-    return redirect('view_alumni_students')
-
-@login_required
-def view_alumni_students(request):
-    students = Student.objects.filter(is_alumni=True)
-    return render(request, 'Hod/view_alumni.html', {'students': students})
-
-
-@login_required
-def delete_student(request, student_id):
-    student = get_object_or_404(Student, admin__id=student_id)
-    student.delete()
-    return redirect('view_alumni_students')
-
-@login_required
-def aulmnirestore_student(request, student_id):
-    student = get_object_or_404(Student, admin__id=student_id)
-    student.is_alumni = False
-    student.save()
-    return redirect('view_alumni_students')
