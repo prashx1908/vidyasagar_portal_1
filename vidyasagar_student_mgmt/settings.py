@@ -50,19 +50,8 @@ TEMPLATES = [
 ]
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
-        'PORT': config('DB_PORT', default='5432'),
-    }
+    "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
-
-if config('ENVIRONMENT') == "PRODUCTION":
-    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -83,10 +72,13 @@ LANGUAGE_CODE = "en-us"
 TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
-
-STATIC_URL = "/static/"
-MEDIA_URL = "/media/"
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
+
+MEDIA_URL = "/media/"
+
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
