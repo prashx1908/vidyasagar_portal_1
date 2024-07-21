@@ -9,7 +9,7 @@ SECRET_KEY = config("SECRET_KEY")
 
 DEBUG = config("DEBUG", default=False, cast=bool)
 
-ALLOWED_HOSTS = ['.vercel.app']
+ALLOWED_HOSTS = ['.vercel.app', "*"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -50,7 +50,14 @@ TEMPLATES = [
 ]
 
 DATABASES = {
-    "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    "default": {
+        'ENGINE':'django.db.backends.postgresql',
+        'NAME':config("DB_NAME"),
+        'USER':config("DB_USER"),
+        "PORT":config("DB_PORT"),
+        'PASSWORD':config("DB_PASSWORD"),
+        'HOST':config("DB_HOST"),
+    }
 }
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -72,16 +79,16 @@ LANGUAGE_CODE = "en-us"
 TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 
 MEDIA_URL = "/media/"
 
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
+    os.path.join(BASE_DIR, 'static'),
 ]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

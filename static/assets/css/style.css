@@ -2248,23 +2248,10 @@ footer p {
     background-color: #d34b7d;
     border: 1px solid #d34b7d;
 }
-.youtube {
-    background-color: #d12424;
-    border: 1px solid #d12424;
-}
-.phone{
-    background-color: #5ebbf4;
-    border: 1px solid #5ebbf4;
-}
 .fa-facebook {
     color: #7085b0;
 }
 .fa-mobile {
-    color: #000000;
-    bottom: -7px !important;
-    right: 20px !important;
-}
-.fa-phone {
     color: #5ebbf4;
     bottom: -10px !important;
     right: 18px !important;
@@ -2279,12 +2266,6 @@ footer p {
     bottom: -14px !important;
     right: 23px !important;
 }
-.fa-youtube {
-    color: #d12424;
-    bottom: -14px !important;
-    right: 23px !important;
-}
-
 
 /*-----------------
 	15. Student Details
@@ -2388,7 +2369,7 @@ footer p {
 .fc-unthemed .fc-popover {
 	border-color: #f3f3f3;
 }
-.fc-basic-view .fc-day-number, 
+.fc-basic-view .fc-day-number,
 .fc-basic-view .fc-week-number {
     padding: 2px 5px;
 }
@@ -2703,7 +2684,6 @@ table.table-inbox tbody tr.checked {
 	20. Teacher Dashboard
 -----------------------*/
 
-
 .bg-five {
 	background-color: rgb(244 104 65 / 0.2);
     border-color: #f46841;
@@ -2879,7 +2859,7 @@ table.table-inbox tbody tr.checked {
 	margin-bottom: 0;
 }
 .calendar-info h6 span {
-	
+
 }
 .calendar-info .calendar-blue {
     font-size: 12px;
@@ -3057,13 +3037,6 @@ table.table-inbox tbody tr.checked {
 	.fa-linkedin-in {
 		bottom: -9px !important;
 	}
-	.fa-youtube {
-		bottom: -6px !important;
-	}
-	.fa-phone{
-	bottom: -4px !important;
-	}
-	}
 }
 
 @media (min-width:768px) {
@@ -3178,13 +3151,13 @@ table.table-inbox tbody tr.checked {
 		padding: 0px 50px;
 	}
 	.mobile_btn {
-		color: #000000 !important;
+		color: #18aefa !important;
 		cursor: pointer;
 		display: block;
 		font-size: 24px;
-		height: 40px;
+		height: 60px;
 		left: 0;
-		line-height: 40px;
+		line-height: 60px;
 		padding: 0 15px;
 		position: absolute;
 		text-align: center;
