@@ -11,4 +11,6 @@ __pycache__/
 static/
 media/
 *.swp
+*.pyc
+__pycache__/
 
