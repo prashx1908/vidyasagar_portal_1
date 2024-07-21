@@ -4,13 +4,12 @@ django-environ
 psycopg2-binary
 django-active-link
 dj-database-url
-<<<<<<< HEAD
 
 python-decouple
 
 
 aiobotocore==2.2.0
 
-=======
+
 aiobotocore==2.2.0
->>>>>>> parent of 5aea74a (Resolved merge conflicts)
+
